@@ -47,7 +47,6 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/png', 'href' => Yii::g
         ['label' => '<i class="fas fa-book-open"></i> Каталог', 'url' => ['/site/catalog']],
     ];
     
-    // Обсуждения показываем только авторизованным пользователям
     if (!Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => '<i class="fas fa-comments"></i> Обсуждения', 'url' => ['/discussion/index']];
     }
