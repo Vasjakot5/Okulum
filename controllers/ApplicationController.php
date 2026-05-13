@@ -75,13 +75,11 @@ class ApplicationController extends Controller
         $isAdmin = ($user->role == 1);
         
         if ($isAdmin) {
-            // Админ видит ВСЕ заявки (кроме своих)
             $applications = Applications::find()
                 ->where(['<>', 'user_id', Yii::$app->user->id])
                 ->orderBy(['id' => SORT_DESC])
                 ->all();
         } else {
-            // Обычный пользователь видит ТОЛЬКО свои заявки
             $applications = Applications::find()
                 ->where(['user_id' => Yii::$app->user->id])
                 ->orderBy(['id' => SORT_DESC])
@@ -126,7 +124,6 @@ class ApplicationController extends Controller
                 ->orderBy(['created_at' => SORT_DESC])
                 ->all();
         } else {
-            // Обычный пользователь видит ТОЛЬКО свои статьи
             $events = Events::find()
                 ->where(['user_id' => $userId])
                 ->orderBy(['created_at' => SORT_DESC])
